@@ -1,20 +1,21 @@
 package radoslaw.slowinski.videotoaudio.service
 
 import org.springframework.stereotype.Service
+import radoslaw.slowinski.videotoaudio.model.AudioResponse
 import java.io.BufferedReader
 import java.io.InputStreamReader
 
 interface ConverterService {
-    fun getDownloadableAudioURL(videoKey: String): String
+    fun getDownloadableAudioURL(videoKey: String): AudioResponse
 }
 
 @Service
 class ConverterServiceImpl : ConverterService {
 
-    override fun getDownloadableAudioURL(videoKey: String): String {
-        val videoURL = "https://www.youtube.com/watch?v=$videoKey"
+    override fun getDownloadableAudioURL(videoKey: String): AudioResponse{
+        val videoURL = videoKey
 
-        val process = Runtime.getRuntime().exec("youtube-dl -x -g $videoURL")
+        val process = Runtime.getRuntime().exec("youtube-dl -x -g -s $videoURL")
         val input = BufferedReader(InputStreamReader(process.inputStream))
         var audioURL = ""
         var output = input.readLine()
@@ -24,6 +25,6 @@ class ConverterServiceImpl : ConverterService {
             output = input.readLine()
         }
         process.destroy()
-        return audioURL
+        return AudioResponse(audioURL)
     }
 }
