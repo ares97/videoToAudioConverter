@@ -25,6 +25,7 @@ class ConverterServiceImpl : ConverterService {
             output = input.readLine()
         }
         process.destroy()
+
         return AudioResponse(audioURL)
     }
 }

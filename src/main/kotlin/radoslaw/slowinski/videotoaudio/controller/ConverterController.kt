@@ -6,7 +6,7 @@ import radoslaw.slowinski.videotoaudio.model.AudioResponse
 import radoslaw.slowinski.videotoaudio.service.ConverterServiceImpl
 
 @RestController
-@RequestMapping("/api/converter/")
+@RequestMapping("/api/converter")
 class ConverterController {
 
     @Autowired
