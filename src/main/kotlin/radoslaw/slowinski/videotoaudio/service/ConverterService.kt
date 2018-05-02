@@ -15,7 +15,7 @@ class ConverterServiceImpl : ConverterService {
     override fun getDownloadableAudioURL(videoKey: String): AudioResponse{
         val videoURL = videoKey
 
-        val process = Runtime.getRuntime().exec("youtube-dl -x -g --skip-download $videoURL")
+        val process = Runtime.getRuntime().exec("youtube-dl -x -g -s $videoURL")
         val input = BufferedReader(InputStreamReader(process.inputStream))
         var audioURL = ""
         var output = input.readLine()
@@ -25,8 +25,6 @@ class ConverterServiceImpl : ConverterService {
             output = input.readLine()
         }
         process.destroy()
-        val audioResponse = AudioResponse(audioURL)
-        println(audioResponse)
-        return audioResponse
+        return AudioResponse(audioURL)
     }
 }
