@@ -1,13 +1,18 @@
 package radoslaw.slowinski.videotoaudio
 
+import org.springframework.boot.SpringApplication
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration
 import org.springframework.boot.autoconfigure.SpringBootApplication
-import org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration
 import org.springframework.boot.runApplication
+import org.springframework.context.annotation.ComponentScan
+import org.springframework.context.annotation.Configuration
 
 @SpringBootApplication
-class VideotoaudioApplication
+@EnableAutoConfiguration
+@ComponentScan
+@Configuration
+class VideoToAudioApp
 
 fun main(args: Array<String>) {
-    runApplication<VideotoaudioApplication>(*args)
+    SpringApplication.run(VideoToAudioApp::class.java, *args)
 }
